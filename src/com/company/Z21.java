@@ -1,57 +1,63 @@
 package com.company;
 import java.util.Scanner;
 
+
 /**
  * Napisać program prostego kalkulatora realizującego 4 podstawowe operacje arytmetyczne.
- * Program powinien umożliwiać wybranie operacji, jaka będzie realizowana, pobrać dane niezbędne do realizacji operacji a następnie wyświetlić wynik.
+ * Program powinien umożliwiać wybranie operacji, jaka będzie realizowana,
+ * pobrać dane niezbędne do realizacji operacji a następnie wyświetlić wynik.
  * Program powinien sprawdzać w co najmniej jednym przypadku poprawność danych
  * (np. dla dzielnika równego 0 - zwracać informację o błędzie i proponować ponowne wprowadzenie wartości).
  */
-public class Z21 {
-    protected  static char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".toCharArray(); // Defining alphabet with lower- and uppercase letters + numbers
-    // and it is protected, so it cannot be changed
 
-    // Ceasar's cypher
+public class Z21 {
+
+    public static double add(double a, double b){ // Method for addition
+        double result = a + b;
+        return result;
+    }
+    public static double sub(double a, double b) { // Method for substraction
+        double result = a - b;
+        return result;
+    }
+    public static double mult(double a, double b) { //Method for multiplication
+        double result = a * b;
+        return result;
+    }
+    public static double div(double a, double b) { // Method for division
+        double result = a / b;
+        return result;
+    }
 
     public static void main(String[] args) {
-
-        System.out.println("Enter a sentence below:\n");
-        Scanner scn = new Scanner(System.in);
-        String sentence = scn.nextLine(); // enter new line
-        //sentence.toUpperCase(); // all characters to uppercase. We can use it if alphabet defined only with uppercase letters.
-        char[] arrSent = sentence.toCharArray(); // making array from line
-        int[] arrInd = new int[arrSent.length]; // array with indexes of equal symbols
-        char ii;
-        char jj;
-        for (int i = 0; i < arrSent.length; i++){ // Comparing indexes of "alphabet" with entered string
-            for (int j = 0; j < alphabet.length; j ++){
-                ii = arrSent[i];
-                jj = alphabet[j];
-                if (ii == jj){
-                    arrInd[i] = j;
-                }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter first value:");
+        double x = scanner.nextDouble();
+        System.out.println("Please enter second value:");
+        double y = scanner.nextDouble();
+        System.out.println("Choose the operation: \n 1 for + \n 2 for - \n 3 for * \n 4 for / \n For exit press 0"); // Choises of operations we need to do with entered values
+        double i = scanner.nextDouble();
+        while (i != 0){
+            if (i == 1){
+                System.out.println(add(x,y)); // If entered 1, than addition
+                break;
             }
-        }
-        System.out.println("Enter a value to encrypt your sentence:\n"); // Here we can enter any value of step on which each element of array will be moved according to indexes
-        int x = scn.nextInt();
-        if (x >= 62){ // Here, if your value is more than total amount of letters in defined alphabet, it will pass 62
-            x %= 62;
-            System.out.println("Your key is:" + x);
-        }
-        for (int i = 0; i < arrInd.length; i++){ // Here is a loop in which we are moving every character to our value's step
-            if (arrInd[i] == 0){
-                System.out.print(" ");
+            else if (i == 2){
+                System.out.println(sub(x,y)); // If entered 2, than substraction
+                break;
+            }
+            else if (i == 3){
+                System.out.println(mult(x,y)); // If entered 3, than multiplication
+                break;
+            }
+            else if (i == 4){
+                System.out.println(div(x,y)); // // If entered 4, than division
+                break;
             }
             else {
-                arrInd[i] = arrInd[i] + x; // Here we are adding a step value to every index of our array
-                if (arrInd[i] >= 62){
-                    int res = arrInd[i]%62;
-                    arrInd[i] = res;
-                }
-                char s = alphabet[arrInd[i]]; //If we don't have this character declared, than we copy only link of elements to array
-                arrSent[i] = s;
+                System.out.println("Please choose the exact operation fro 1 to 4."); // If choice is not from 1 to 4, you will be able to choose again.
+                i = scanner.nextDouble();
             }
         }
-        System.out.println(arrSent);
     }
 }
