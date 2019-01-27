@@ -55,7 +55,7 @@ public class Z21 {
                 break;
             }
             else {
-                System.out.println("Please choose the exact operation fro 1 to 4."); // If choice is not from 1 to 4, you will be able to choose again.
+                System.out.println("Please choose the exact operation from 1 to 4."); // If choice is not from 1 to 4, you will be able to choose again.
                 i = scanner.nextDouble();
             }
         }
